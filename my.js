@@ -1,7 +1,7 @@
 var map;
 map = L.map('map').setView([24.140437, 120.909862], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '<a href="https://www.openstreetmap.org/">OpenStreetMap</a> | <a href="https://noob.tw/openstreetmap/">Tutorial 教學</a>',
+    attribution: '<a href="https://www.openstreetmap.org/">OpenStreetMap</a> | <a href="https://github.com/0xdeciverAngel/itw-wifi-map">github source code</a>',
     maxZoom: 18,
 }).addTo(map);
 // var marker = L.marker([, ]);
@@ -30,6 +30,7 @@ request.onload = function() {
             console.log(str);
             var marker = L.marker([wifi_json[i]['LATITUDE'], wifi_json[i]['LONGITUDE']]);
             marker.addTo(map);
+            marker.bindPopup('<b>'+wifi_json[i]['NAME']+'</b><br>'+wifi_json[i]['ADDR']);
         }
         
     }
