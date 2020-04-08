@@ -1,5 +1,5 @@
 var map;
-map = L.map('map').setView([22.9185024, 120.5786888], 7);
+map = L.map('map').setView([24.140437, 120.909862], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '<a href="https://www.openstreetmap.org/">OpenStreetMap</a> | <a href="https://noob.tw/openstreetmap/">Tutorial 教學</a>',
     maxZoom: 18,
@@ -18,8 +18,19 @@ request.onload = function() {
     wifi_json = request.response;
     for(var i in wifi_json)
     {
-        console.log(wifi_json[i]['NAME']);
-        var marker = L.marker([wifi_json[i]['LATITUDE'], wifi_json[i]['LONGITUDE']]);
-        marker.addTo(map);
+        // console.log(wifi_json[i]['NAME']);
+        var str=wifi_json[i]['NAME'];
+        var res=str.search(/^[台臺]中.*/);
+        var res1=str.search(/嘉義/);
+        var res2=str.search(/分院/);
+
+        if(res!=-1 && res1==-1 &&res2==-1 )
+        {
+            
+            console.log(str);
+            var marker = L.marker([wifi_json[i]['LATITUDE'], wifi_json[i]['LONGITUDE']]);
+            marker.addTo(map);
+        }
+        
     }
   }
